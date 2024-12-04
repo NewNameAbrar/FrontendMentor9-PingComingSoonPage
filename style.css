@@ -12,34 +12,24 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 body {
   font-family: 'Libre Franklin', sans-serif;
+}
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-/*### Primary 
-
-- Blue: hsl(223, 87%, 63%)
-
-### Secondary
-
-- Pale Blue: hsl(223, 100%, 88%)
-- Light Red: hsl(354, 100%, 66%)
-
-### Neutral
-
-- Gray: hsl(0, 0%, 59%)
-- Very Dark Blue: hsl(209, 33%, 12%) */
-
 header {
   margin-top: 120px;
 }
 header img {
   width: 120px;
+  cursor: pointer;
 }
 
 .hero {
@@ -47,7 +37,6 @@ header img {
   flex-direction: column;
   align-items: center;
 }
-
 .hero h2 {
   margin-top: 57px;
   font-size: 4.44rem;
@@ -56,13 +45,11 @@ header img {
   font-weight: 300;
   color: hsl(0, 0%, 59%);
 }
-
 .hero p {
   margin-top: 20px;
   font-size: 1.875rem;
   color: hsl(0, 0%, 39%);
 }
-
 .hero .box {
   margin-top: 50px;
   width: 964px;
@@ -70,20 +57,35 @@ header img {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  position: relative;
 }
-.hero .box input {
+.hero .box .mailInput {
   font-size: 1.2rem;
   flex: 2;
   padding: 24px 35px;
   border: 1px solid hsl(223, 50%, 88%);
   border-radius: 35px;
 }
-.hero .box input::placeholder {
+.hero .box .mailInput:focus {
+  outline: none;
+  border: 1px solid hsl(223, 50%, 18%);
+}
+.hero .box .mailInput::placeholder {
   font-weight: 100;
   font-size: 1.2rem;
-  color: hsl(0, 0%, 84%);
+  color: hsl(0, 0%, 74%);
 }
-.hero .box button {
+.hero .box .mailInput.error::placeholder {
+  color: hsl(0, 0%, 10%);
+}
+.hero .box .errorMsg {
+  font-size: 0.9rem;
+  color: hsl(354, 100%, 66%);
+  position: absolute;
+  top: 55px;
+  left: 35px;
+}
+.hero .box .blueBtn {
   font-size: 1.2rem;
   flex: 1;
   padding: 25px;
@@ -91,11 +93,12 @@ header img {
   border: none;
   color: white;
   background-color: hsl(223, 87%, 63%);
+  cursor: pointer;
 }
-
 .hero img {
   margin-top: 120px;
   width: 900px;
+  cursor: pointer;
 }
 
 footer {
@@ -103,7 +106,6 @@ footer {
   display: flex;
   flex-direction: column;
 }
-
 .logos {
   display: flex;
   align-items: center;
@@ -121,8 +123,12 @@ footer {
   width: 30px;
   height: 30px;
   font-size: 20px;
+  cursor: pointer;
 }
-
+.logos i:hover {
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(223, 87%, 63%);
+}
 footer p {
   margin-top: 35px;
   font-size: 0.9rem;
@@ -145,23 +151,25 @@ footer p {
     margin-top: 15px;
     font-size: 1.4rem;
   }
-
   .hero .box {
     margin-top: 37px;
     width: 724px;
   }
-  .hero .box input {
+  .hero .box .mailInput {
     font-size: 0.9rem;
     padding: 18px 26px;
   }
-  .hero .box input::placeholder {
+  .hero .box .mailInput::placeholder {
     font-size: 0.9rem;
   }
-  .hero .box button {
+  .hero .box .errorMsg {
+    top: 40px;
+    left: 26px;
+  }
+  .hero .box .blueBtn {
     font-size: 0.9rem;
     padding: 19px;
   }
-
   .hero img {
     margin-top: 90px;
     width: 675px;
@@ -191,23 +199,26 @@ footer p {
     margin-top: 10px;
     font-size: 1rem;
   }
-
   .hero .box {
     margin-top: 24px;
     width: 475px;
   }
-  .hero .box input {
+  .hero .box .mailInput {
     font-size: 0.9rem;
     padding: 12px 17px;
   }
-  .hero .box input::placeholder {
+  .hero .box .mailInput::placeholder {
     font-size: 0.9rem;
   }
-  .hero .box button {
+  .hero .box .errorMsg {
+    font-size: 0.8rem;
+    top: 33px;
+    left: 17px;
+  }
+  .hero .box .blueBtn {
     font-size: 0.9rem;
     padding: 13px;
   }
-
   .hero img {
     margin-top: 60px;
     width: 445px;
@@ -220,7 +231,7 @@ footer p {
     margin-top: 17px;
   }
 }
-/* tablet */
+/* mobile */
 @media (max-width: 480px) {
   header {
     margin-top: 60px;
@@ -237,26 +248,35 @@ footer p {
     margin-top: 10px;
     font-size: 0.9rem;
   }
-
   .hero .box {
     margin-top: 36px;
     width: 300px;
     flex-direction: column;
   }
-  .hero .box input {
-    width: 80%;
+  .hero .whenError {
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero .box .mailInput {
+    width: 100%;
     font-size: 0.9rem;
     padding: 14px 30px;
   }
-  .hero .box input::placeholder {
+  .hero .box .mailInput::placeholder {
     font-size: 0.9rem;
   }
-  .hero .box button {
+  .hero .box .errorMsg {
+    width: 80%;
+    font-size: 0.75rem;
+    text-align: center;
+    margin-top: 32px;
+  }
+  .hero .box .blueBtn {
     width: 100%;
     font-size: 0.9rem;
     padding: 15px 0;
   }
-
   .hero img {
     margin-top: 75px;
     width: 300px;
